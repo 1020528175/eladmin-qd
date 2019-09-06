@@ -13,7 +13,8 @@
         <el-button style="margin-left:0px;" icon="el-icon-minus" @click.prevent="removeDomain(domain)"/>
       </el-form-item>
       <div ref="editor" class="editor"/>
-      <el-button :loading="loading" style="margin-left:1.6%;" size="medium" type="primary" @click="doSubmit">发送邮件</el-button>
+      <el-button :loading="loading" style="margin:0 1.6%;" size="medium" type="primary" @click="doSubmit">发送邮件</el-button>
+      <el-checkbox v-model="checked" @change="addCopier">是否抄送自己(如遇垃圾邮件提示，请勾选后重试)</el-checkbox>
     </el-form>
   </div>
 </template>
@@ -21,7 +22,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { getToken } from '@/utils/auth'
-import { send } from '@/api/email'
+import { get, send,Bus } from '@/api/email'
 import { validatEmail } from '@/utils/validate'
 import E from 'wangeditor'
 export default {
@@ -31,7 +32,8 @@ export default {
       headers: {
         'Authorization': 'Bearer ' + getToken()
       },
-      loading: false, form: { subject: '', tos: [], content: '' },
+      loading: false, form: { subject: '', tos: [], ccs: [], content: '' },
+      checked: false,
       tos: [{
         value: ''
       }],
@@ -39,7 +41,8 @@ export default {
         subject: [
           { required: true, message: '标题不能为空', trigger: 'blur' }
         ]
-      }
+      },
+      eamilConfig: {}
     }
   },
   computed: {
@@ -63,6 +66,7 @@ export default {
       this.form.content = html
     }
     editor.create()
+    this.transmitEmailConfig()
   },
   methods: {
     removeDomain(item) {
@@ -122,6 +126,15 @@ export default {
           return false
         }
       })
+    },
+    transmitEmailConfig(){
+      Bus.$on("transmitEmailConfig",(data) =>{
+        this.eamilConfig = data
+      })
+    },
+    //增加自己作为抄送人
+    addCopier(){
+      this.form.ccs[0] = this.checked ? this.eamilConfig.fromUser : ""
     }
   }
 }

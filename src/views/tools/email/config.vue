@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { get, update } from '@/api/email'
+import { get, update,Bus} from '@/api/email'
 export default {
   name: 'Config',
   data() {
@@ -60,6 +60,7 @@ export default {
     init() {
       get().then(res => {
         this.form = res
+        Bus.$emit("transmitEmailConfig",this.form)
       })
     },
     doSubmit() {
@@ -73,6 +74,8 @@ export default {
               duration: 2500
             })
             this.loading = false
+            //出发传递emailConfig
+            Bus.$emit("transmitEmailConfig",this.form)
           }).catch(err => {
             this.loading = false
             console.log(err.response.data.message)

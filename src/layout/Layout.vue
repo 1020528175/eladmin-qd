@@ -1,10 +1,10 @@
 <template>
   <div :class="classObj" class="app-wrapper">
     <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
-    <sidebar class="sidebar-container" />
+    <Sidebar class="sidebar-container" />
     <div :class="{hasTagsView:needTagsView}" class="main-container">
       <div :class="{'fixed-header':fixedHeader}">
-        <navbar />
+        <Navbar />
         <div class="feedback">
           <el-tooltip class="item" effect="dark" content="建议反馈" placement="left">
             <el-button type="text" @click="doFeedback">
@@ -16,10 +16,10 @@
       </div>
       <app-main />
       <right-panel>
-        <settings />
+        <Settings />
       </right-panel>
     </div>
-    <feedback :show-dialog.sync="feedbackShow"/>
+    <Feedback :show-dialog.sync="feedbackShow"/>
   </div>
 </template>
 
@@ -28,7 +28,7 @@ import RightPanel from '@/components/RightPanel'
 import { AppMain, Navbar, Settings, Sidebar, TagsView } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
 import { mapState } from 'vuex'
-import feedback from './feedback.vue'
+import Feedback from './feedback.vue'
 
 export default {
   name: 'Layout',
@@ -39,7 +39,7 @@ export default {
     Sidebar,
     TagsView,
     RightPanel,
-    feedback
+    Feedback
   },
   mixins: [ResizeMixin],
   data() {
