@@ -1,7 +1,7 @@
 import request from '@/utils/request'
 
 import Vue from 'vue'
-export const Bus = new Vue()
+export const Bus = new Vue
 
 export function get() {
   return request({
