@@ -4,6 +4,12 @@
     <div class="head-container">
       <!-- 新增 -->
       <div style="display: inline-block;margin: 0px 2px;">
+        <!-- 搜索 -->
+        <el-input v-model="query.title" clearable placeholder="输入商品标题搜索" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery"/>
+        <el-select v-model="query.openStatus" clearable placeholder="开启状态" class="filter-item" style="width: 120px" @change="toQuery">
+          <el-option v-for="item in openStatusOptions" :key="item.value" :label="item.label" :value="item.value"/>
+        </el-select>
+        <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
         <el-button
           v-permission="['ADMIN','GOODSMONITOR_ALL','GOODSMONITOR_CREATE']"
           class="filter-item"
@@ -22,7 +28,11 @@
       <el-table-column prop="link" label="商品链接" />
       <el-table-column prop="imgUrl" label="商品首图" width="100">
         <template slot-scope="scope">
-          <img :src="scope.row.imgUrl" class="table-img">
+<!--          <img :src="scope.row.imgUrl" class="table-img">-->
+            <el-image
+              :src="scope.row.imgUrl"
+              :preview-src-list="[scope.row.imgUrl]">
+            </el-image>
         </template>
       </el-table-column>
       <el-table-column prop="originMall" label="商城" width="100"/>
@@ -77,6 +87,20 @@ export default {
   data() {
     return {
       delLoading: false,
+      openStatusOptions:[
+        {
+          value: true,
+          label: "开启"
+
+        },
+        {
+          value: false,
+          label: "关闭"
+        }
+      ],
+      imgUrls:[
+        'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
+      ]
     }
   },
   created() {
@@ -91,6 +115,8 @@ export default {
       this.url = 'api/goodsMonitor'
       const sort = 'id,desc'
       this.params = { page: this.page, size: this.size, sort: sort }
+      this.query.title ? this.params['title'] = this.query.title : ''
+      this.query.openStatus === false ? this.params['openStatus'] = false : this.params['openStatus'] = true
       return true
     },
     subDelete(id) {
@@ -114,6 +140,23 @@ export default {
     add() {
       this.isAdd = true
       this.$refs.form.dialog = true
+      const _this = this.$refs.form
+      _this.form = {
+        id: '',
+        title: '',
+        link: '',
+        imgUrl: '',
+        originMall: '',
+        maxPrice: '',
+        minPrice: '',
+        openStatus: '',
+        email: '',
+        deleteStatus: '',
+        createBy: '',
+        createDate: '',
+        updateBy: '',
+        updateDate: ''
+      }
     },
     edit(data) {
       this.isAdd = false
@@ -140,7 +183,7 @@ export default {
     //自己写的方法
     formatterOpenStatus(row, column, cellValue, index){
       return cellValue == 1 ? "开启中" : "已停止"
-    }
+    },
   }
 }
 </script>
