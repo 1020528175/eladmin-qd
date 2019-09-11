@@ -25,7 +25,11 @@
     <el-table v-loading="loading" :data="data" size="small" :highlight-current-row="true" style="width: 100%;">
       <el-table-column type="index" label="序号"/>
       <el-table-column prop="title" label="商品标题"/>
-      <el-table-column prop="link" label="商品链接" />
+      <el-table-column prop="link" label="商品链接" >
+        <template slot-scope="scope">
+          <a target="_blank" style="color: #0066cc" :href="scope.row.link">{{scope.row.link}}</a>
+        </template>
+      </el-table-column>
       <el-table-column prop="imgUrl" label="商品首图" width="100">
         <template slot-scope="scope">
 <!--          <img :src="scope.row.imgUrl" class="table-img">-->
@@ -149,7 +153,7 @@ export default {
         originMall: '',
         maxPrice: '',
         minPrice: '',
-        openStatus: '',
+        openStatus: true,
         email: '',
         deleteStatus: '',
         createBy: '',

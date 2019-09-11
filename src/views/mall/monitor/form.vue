@@ -53,6 +53,16 @@ export default {
     }
   },
   data() {
+    const checkMultiEmail = (rule, value, callback) => {
+      if (!value) {
+        return callback(new Error('邮箱不能为空'));
+      }
+      const email_reg = /^((([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6}\,))*(([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})))$/
+      if (!email_reg.test(value)){
+        callback(new Error('请输入正确的邮箱格式，多个邮箱用英文‘,’隔开'));
+      }
+      callback();
+    };
     return {
       loading: false, dialog: false,
       form: {
@@ -90,8 +100,8 @@ export default {
         openStatus: [
           { required: true, message: '开启状态不能为空', trigger: 'change' }
         ],
-        email: [
-          { type: 'email', required: true, message: '请输入正确的邮箱地址', trigger: 'blur,change' }
+        email: [ //需要支持输入多个邮箱，用‘,’隔开
+          { required: true, validator: checkMultiEmail, trigger: 'blur,change' }
         ]
       },
       openStatusOptions:[
@@ -179,12 +189,10 @@ export default {
     //获取监控的商品信息
     getGoods(){
       getGoodsInfo({
-        link: this.form.link
+        link: this.form.link.trim()
       }).then((res) =>{
-        console.log(this.form)
         this.form = res
-        this.form.openStatus = 1
-        console.log(this.form)
+        this.form.openStatus = true
       }).catch((res) => {
         console.log("error",res)
       })
