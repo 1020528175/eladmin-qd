@@ -21,14 +21,12 @@
         <el-input v-model="form.minPrice" style="width: 370px;"/>
       </el-form-item>
       <el-form-item label="开启状态" prop="openStatus">
-<!--        <el-input v-model="form.openStatus ? 1 : 0" style="width: 370px;"/>-->
         <el-select v-model="form.openStatus" placeholder="请选择">
           <el-option
-            v-for="item in openStatusOptions"
+            v-for="item in dicts"
             :key="item.value"
             :label="item.label"
-            :value="item.value"
-            :select="item.value == form.openStatus">
+            :value="item.value">
           </el-option>
         </el-select>
       </el-form-item>
@@ -49,6 +47,10 @@ export default {
   props: {
     isAdd: {
       type: Boolean,
+      required: true
+    },
+    dicts: {
+      type: Array,
       required: true
     }
   },
@@ -104,17 +106,6 @@ export default {
           { required: true, validator: checkMultiEmail, trigger: 'blur,change' }
         ]
       },
-      openStatusOptions:[
-        {
-          value: true,
-          label: "开启"
-
-        },
-        {
-          value: false,
-          label: "关闭"
-        }
-      ]
     }
   },
   methods: {

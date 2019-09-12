@@ -7,7 +7,7 @@
         <!-- 搜索 -->
         <el-input v-model="query.title" clearable placeholder="输入商品标题搜索" style="width: 200px;" class="filter-item" @keyup.enter.native="toQuery"/>
         <el-select v-model="query.openStatus" clearable placeholder="开启状态" class="filter-item" style="width: 120px" @change="toQuery">
-          <el-option v-for="item in openStatusOptions" :key="item.value" :label="item.label" :value="item.value"/>
+          <el-option v-for="item in dicts" :key="item.value" :label="item.label" :value="item.value"/>
         </el-select>
         <el-button class="filter-item" size="mini" type="success" icon="el-icon-search" @click="toQuery">搜索</el-button>
         <el-button
@@ -20,7 +20,7 @@
       </div>
     </div>
     <!--表单组件-->
-    <eForm ref="form" :is-add="isAdd"/>
+    <eForm ref="form" :is-add="isAdd" :dicts="dicts"/>
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" :highlight-current-row="true" style="width: 100%;">
       <el-table-column type="index" label="序号"/>
@@ -32,7 +32,6 @@
       </el-table-column>
       <el-table-column prop="imgUrl" label="商品首图" width="100">
         <template slot-scope="scope">
-<!--          <img :src="scope.row.imgUrl" class="table-img">-->
             <el-image
               :src="scope.row.imgUrl"
               :preview-src-list="[scope.row.imgUrl]">
@@ -42,7 +41,11 @@
       <el-table-column prop="originMall" label="商城" width="100"/>
       <el-table-column prop="maxPrice" label="最高价" width="80"/>
       <el-table-column prop="minPrice" label="最低价" width="80"/>
-      <el-table-column prop="openStatus" :formatter="formatterOpenStatus" label="开启状态" width="100"/>
+      <el-table-column prop="openStatus" label="开启状态" width="100">
+        <template slot-scope="scope">
+          {{scope.row.openStatus ? "开启中" : "已停止"}}
+        </template>
+      </el-table-column>
       <el-table-column prop="email" label="邮件地址" width="160"/>
       <el-table-column prop="createBy" label="创建人" width="80"/>
       <el-table-column prop="createDate" label="创建时间" width="140">
@@ -82,26 +85,16 @@
 <script>
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/initData'
+import initDict from '@/mixins/initDict'
 import { del } from '@/api/goodsMonitor'
 import { parseTime } from '@/utils/index'
 import eForm from './form'
 export default {
   components: { eForm },
-  mixins: [initData],
+  mixins: [initData,initDict],
   data() {
     return {
       delLoading: false,
-      openStatusOptions:[
-        {
-          value: true,
-          label: "开启"
-
-        },
-        {
-          value: false,
-          label: "关闭"
-        }
-      ],
       imgUrls:[
         'https://fuss10.elemecdn.com/8/27/f01c15bb73e1ef3793e64e6b7bbccjpeg.jpeg'
       ]
@@ -110,6 +103,7 @@ export default {
   created() {
     this.$nextTick(() => {
       this.init()
+      this.getDict("goods_monitor_status")
     })
   },
   methods: {
@@ -120,7 +114,7 @@ export default {
       const sort = 'id,desc'
       this.params = { page: this.page, size: this.size, sort: sort }
       this.query.title ? this.params['title'] = this.query.title : ''
-      this.query.openStatus === false ? this.params['openStatus'] = false : this.params['openStatus'] = true
+      this.query.openStatus  != undefined ? this.params['openStatus'] = this.query.openStatus : ''
       return true
     },
     subDelete(id) {
@@ -153,7 +147,7 @@ export default {
         originMall: '',
         maxPrice: '',
         minPrice: '',
-        openStatus: true,
+        openStatus: '',
         email: '',
         deleteStatus: '',
         createBy: '',
@@ -173,7 +167,7 @@ export default {
         originMall: data.originMall,
         maxPrice: data.maxPrice,
         minPrice: data.minPrice,
-        openStatus: data.openStatus,
+        openStatus: data.openStatus + '',
         email: data.email,
         deleteStatus: data.deleteStatus,
         createBy: data.createBy,
@@ -182,11 +176,6 @@ export default {
         updateDate: data.updateDate
       }
       _this.dialog = true
-    },
-
-    //自己写的方法
-    formatterOpenStatus(row, column, cellValue, index){
-      return cellValue == 1 ? "开启中" : "已停止"
     },
   }
 }
