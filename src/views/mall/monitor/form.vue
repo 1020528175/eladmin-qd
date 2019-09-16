@@ -4,7 +4,7 @@
       <el-form-item label="商品标题" prop="title">
         <el-input v-model="form.title" style="width: 370px;"/>
       </el-form-item>
-      <p style="margin-left: 10px;font-size: 12px">可以直接填写商品链接，就会自动填充商品信息</p>
+      <p style="margin-left: 10px;font-size: 12px">可以直接填写商品链接，就会自动填充商品信息(支持淘宝，京东，唯品会)</p>
       <el-form-item label="商品链接" prop="link">
         <el-input v-model="form.link" @blur="getGoods" style="width: 370px;"/>
       </el-form-item>
@@ -16,6 +16,9 @@
       </el-form-item>
       <el-form-item label="最高价">
         <el-input v-model="form.maxPrice" style="width: 370px;"/>
+      </el-form-item>
+      <el-form-item label="现价">
+        <el-input v-model="form.currentPrice" style="width: 370px;" readonly/>
       </el-form-item>
       <el-form-item label="最低价" prop="minPrice">
         <el-input v-model="form.minPrice" style="width: 370px;"/>
@@ -75,6 +78,7 @@ export default {
         originMall: '',
         maxPrice: '',
         minPrice: '',
+        currentPrice: '',
         openStatus: '',
         email: '',
         deleteStatus: '',
@@ -167,6 +171,7 @@ export default {
         originMall: '',
         maxPrice: '',
         minPrice: '',
+        currentPrice: '',
         openStatus: '',
         email: '',
         deleteStatus: '',
@@ -183,13 +188,11 @@ export default {
         link: this.form.link.trim()
       }).then((res) =>{
         this.form = res
-        this.form.openStatus = true
+        this.form.openStatus = "true"
       }).catch((res) => {
         console.log("error",res)
       })
-
     }
-
   }
 }
 </script>

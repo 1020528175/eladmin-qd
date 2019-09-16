@@ -32,3 +32,12 @@ export function getGoodsInfo(params) {
   })
 }
 
+//通过商品链接去获取商品当前价格
+export function getCurrentPrice(params) {
+  return request({
+    url: 'api/getCurrentPrice',
+    method: 'get',
+    params
+  })
+}
+

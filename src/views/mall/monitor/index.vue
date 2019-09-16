@@ -86,7 +86,7 @@
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/initData'
 import initDict from '@/mixins/initDict'
-import { del } from '@/api/goodsMonitor'
+import { del, getCurrentPrice} from '@/api/goodsMonitor'
 import { parseTime } from '@/utils/index'
 import eForm from './form'
 export default {
@@ -175,7 +175,16 @@ export default {
         updateBy: data.updateBy,
         updateDate: data.updateDate
       }
-      _this.dialog = true
+
+      //编辑时，自动加载当前价格
+      getCurrentPrice({
+        link: _this.form.link.trim()
+      }).then((res) =>{
+        _this.form.currentPrice = res
+        _this.dialog = true
+      }).catch((res) => {
+        console.log("error",res)
+      })
     },
   }
 }
