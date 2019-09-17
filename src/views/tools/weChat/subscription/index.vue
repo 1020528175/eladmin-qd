@@ -7,21 +7,17 @@
       <div>
         <blockquote class="my-blockquote">注意</blockquote>
         <pre class="my-code">
-测试所用参数都是沙箱环境，仅供测试使用，申请地址：<a style="color: #00a0e9" href="https://openhome.alipay.com/platform/appDaily.htm?tab=info" target="_blank">支付宝开发平台</a>
-如需付款测试，请使用
-账号：uuxesw9745@sandbox.com
-密码与支付密码：111111</pre>
-        <blockquote class="my-blockquote"> 支付设置</blockquote>
+          <p>微信公众号的接入参数来自于：微信公众平台 - 开发 - 基本配置（如下图）</p>
+          <el-image
+            :src="require('@/assets/weChat/subscription-config.png')"
+            style="max-height: 600px">
+          </el-image>
+        </pre>
+        <blockquote class="my-blockquote"> 接入域名设置(服务器地址(URL))</blockquote>
         <pre class="my-code">
-// 支付提供两个接口，
-// PC端与手机端，并且在前端使用代码识别
-if (/(Android)/i.test(navigator.userAgent)){     // 判断是否为Android手机
-    url = "/aliPay/toPayAsWeb"
-}else if(/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)){  // 判断是否为苹果手机
-    url = "/aliPay/toPayAsWeb"
-} else {
-    url = "/aliPay/toPayAsPC"
-}</pre>
+          <p>上图中的服务器配置(未启用) - 服务器地址(URL) 应根据本项目的部署情况配置为：<span>http://域名/项目根路径<span>/api/weChat/checkToken</span></span></p>
+          <p>地址中的红色部门是固定的，这个地址是微信用来验证接入的合法性，是通过token来验证的，上图中的token和这里配置微信接入参数时的token是一致的，否则就不能通过微信的验证，不能接入微信公众号。</p>
+        </pre>
       </div>
     </el-tab-pane>
   </el-tabs>
@@ -41,4 +37,13 @@ export default {
 </script>
 
 <style scoped>
+  p{
+    font-size: 14px;
+  }
+  p>span{
+    color: #1aaba8;
+  }
+  p>span>span{
+    color: red;
+  }
 </style>
