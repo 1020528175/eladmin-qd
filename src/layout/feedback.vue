@@ -127,6 +127,7 @@ export default {
           }
           formData.append('feedback', this.feedback.info)
         }
+        console.log("hehe",formData)
         // let res = await axios.post('http://', formData, {
         //   headers: {
         //     'Origin': window.location.origin,
