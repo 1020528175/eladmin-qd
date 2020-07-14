@@ -58,18 +58,18 @@
     </el-dialog>
     <!--表格渲染-->
     <el-table v-loading="loading" :data="data" size="small" style="width: 100%;">
-      <el-table-column :show-overflow-tooltip="true" prop="jobName" width="100px" label="任务名称"/>
-      <el-table-column :show-overflow-tooltip="true" prop="beanName" label="Bean名称"/>
+      <el-table-column :show-overflow-tooltip="true" prop="jobName" label="任务名称"/>
+      <el-table-column :show-overflow-tooltip="true" prop="beanName" width="200px" label="Bean名称" />
       <el-table-column :show-overflow-tooltip="true" prop="methodName" width="90px" label="执行方法"/>
       <el-table-column :show-overflow-tooltip="true" prop="params" width="80px" label="参数"/>
-      <el-table-column :show-overflow-tooltip="true" prop="cronExpression" width="100px" label="cron表达式"/>
+      <el-table-column :show-overflow-tooltip="true" prop="cronExpression" width="220px" label="cron表达式"/>
       <el-table-column :show-overflow-tooltip="true" prop="isPause" width="90px" label="状态">
         <template slot-scope="scope">
           <el-tag :type="scope.row.isPause ? 'warning' : 'success'">{{ scope.row.isPause ? '已暂停' : '运行中' }}</el-tag>
         </template>
       </el-table-column>
       <el-table-column :show-overflow-tooltip="true" prop="remark" label="描述"/>
-      <el-table-column :show-overflow-tooltip="true" prop="updateTime" label="更新日期">
+      <el-table-column :show-overflow-tooltip="true" prop="updateTime" label="更新日期" width="120px">
         <template slot-scope="scope">
           <span>{{ parseTime(scope.row.updateTime) }}</span>
         </template>

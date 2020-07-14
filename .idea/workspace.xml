@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="59a4e523-caf6-4982-b224-9582f4d4488b" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/api/stockMonitor.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/stock/form.vue" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/stock/index.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/dev.env.js" beforeDir="false" afterPath="$PROJECT_DIR$/config/dev.env.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/login.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/system/timing/index.vue" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/system/timing/index.vue" afterDir="false" />
+    </list>
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectId" id="1QSorH0Tl1tTJB3gbagOry7aAv1" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/api" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="ts.external.directory.path" value="D:\java_software\JetBrains\WebStorm 2019.2\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\java_software\workspace\webstrom\eladmin-vue\src\api" />
+      <recent name="D:\java_software\workspace\webstrom\eladmin-vue\src\views" />
+      <recent name="D:\java_software\workspace\webstrom\eladmin-vue\src\assets\weChat" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="npm.build">
+    <configuration name="build" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="build" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="dev" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="dev" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.build" />
+        <item itemvalue="npm.dev" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="59a4e523-caf6-4982-b224-9582f4d4488b" name="Default Changelist" comment="" />
+      <created>1567773555114</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1567773555114</updated>
+      <workItem from="1567773556257" duration="1954000" />
+      <workItem from="1567827388857" duration="9807000" />
+      <workItem from="1568038487112" duration="618000" />
+      <workItem from="1568358692933" duration="6282000" />
+      <workItem from="1568729262797" duration="6807000" />
+      <workItem from="1569029468268" duration="1208000" />
+      <workItem from="1569038079028" duration="599000" />
+      <workItem from="1569051946356" duration="669000" />
+      <workItem from="1569161636674" duration="1929000" />
+      <workItem from="1569248893219" duration="1431000" />
+      <workItem from="1569341186755" duration="71000" />
+      <workItem from="1584325091541" duration="1152000" />
+      <workItem from="1589529098673" duration="8175000" />
+      <workItem from="1589719527960" duration="3361000" />
+      <workItem from="1590495670352" duration="3692000" />
+      <workItem from="1592790742882" duration="637000" />
+      <workItem from="1594728663518" duration="2527000" />
+    </task>
+    <task id="LOCAL-00001" summary="完成商品价格定时监控页面">
+      <created>1567950738338</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1567950738338</updated>
+    </task>
+    <task id="LOCAL-00002" summary="完成微信公众号的接入参数配置">
+      <created>1568734419609</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1568734419609</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="完成商品价格定时监控页面" />
+    <MESSAGE value="完成微信公众号的接入参数配置" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成微信公众号的接入参数配置" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/views/tools/weChat/subscription/index.vue</url>
+          <line>43</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

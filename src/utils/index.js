@@ -15,7 +15,8 @@ export function parseTime(time) {
     var minutes = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
     var seconds = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()
     // 拼接
-    return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
+    // return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes + ':' + seconds
+    return year + '-' + month + '-' + day + ' ' + hours + ':' + minutes
   } else {
     return ''
   }
