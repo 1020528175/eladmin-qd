@@ -23,6 +23,14 @@ export function edit(data) {
   })
 }
 
+export function updateOpenStatusById(data) {
+  return request({
+    url: 'api/updateOpenStatusById',
+    method: 'put',
+    data
+  })
+}
+
 //通过商品链接去获取商品的信息
 export function getGoodsInfo(params) {
   return request({

@@ -17,6 +17,7 @@
         <pre class="my-code">
           <p>上图中的服务器配置(未启用) - 服务器地址(URL) 应根据本项目的部署情况配置为：<span>http://域名/项目根路径<span>/api/weChat/checkToken</span></span></p>
           <p>地址中的红色部门是固定的，这个地址是微信用来验证接入的合法性，是通过token来验证的，上图中的token和这里配置微信接入参数时的token是一致的，否则就不能通过微信的验证，不能接入微信公众号。</p>
+          <p>如果创建菜单返回：{"errcode":48001,"errmsg":"api unauthorized hint: [QbLwwa06558699!]"}，那就说明这个公众号还没认证，没权限通过接口去创建菜单，可以先使用测试号测试。</p>
         </pre>
       </div>
     </el-tab-pane>

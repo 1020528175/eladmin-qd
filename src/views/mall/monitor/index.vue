@@ -43,7 +43,13 @@
       <el-table-column prop="minPrice" label="最低价" width="80"/>
       <el-table-column prop="openStatus" label="开启状态" width="100">
         <template slot-scope="scope">
-          {{scope.row.openStatus ? "开启中" : "已停止"}}
+<!--          {{scope.row.openStatus ? "开启中" : "已停止"}}-->
+          <el-switch ref="switch"
+            v-model="scope.row.openStatus"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            @change="updateGoodsMonitorStatus(scope.row.id,scope.row.openStatus)">
+          </el-switch>
         </template>
       </el-table-column>
       <el-table-column prop="email" label="邮件地址" width="160"/>
@@ -86,7 +92,7 @@
 import checkPermission from '@/utils/permission'
 import initData from '@/mixins/initData'
 import initDict from '@/mixins/initDict'
-import { del, getCurrentPrice} from '@/api/goodsMonitor'
+import { del, getCurrentPrice,updateOpenStatusById} from '@/api/goodsMonitor'
 import { parseTime } from '@/utils/index'
 import eForm from './form'
 export default {
@@ -111,7 +117,7 @@ export default {
     checkPermission,
     beforeInit() {
       this.url = 'api/goodsMonitor'
-      const sort = 'id,desc'
+      const sort = 'openStatus,id,desc'
       this.params = { page: this.page, size: this.size, sort: sort }
       this.query.title ? this.params['title'] = this.query.title : ''
       this.query.openStatus  != undefined ? this.params['openStatus'] = this.query.openStatus : ''
@@ -186,6 +192,21 @@ export default {
         console.log("error",res)
       })
     },
+    /**
+     * 快捷更新商品监控的开启状态
+     * @param goodsId
+     * @param openStatus
+     */
+    updateGoodsMonitorStatus(goodsId,openStatus){
+      updateOpenStatusById({
+        id: goodsId,
+        openStatus: openStatus
+      }).catch(res =>{
+          console.log(res)
+          const row = this.data.filter((item) => item.id == goodsId)
+          row[0].openStatus = !openStatus
+        })
+    }
   }
 }
 </script>
